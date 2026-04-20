@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xwj/Kama-HTTPServer
+CMAKE_SOURCE_DIR = /home/xwj/HTTPServer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xwj/Kama-HTTPServer/build
+CMAKE_BINARY_DIR = /home/xwj/HTTPServer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -85,11 +85,56 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xwj/Kama-HTTPServer/build/CMakeFiles /home/xwj/Kama-HTTPServer/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xwj/HTTPServer/build/CMakeFiles /home/xwj/HTTPServer/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xwj/Kama-HTTPServer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xwj/HTTPServer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +162,637 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named simple_server
+# Target rules for targets named http_server
 
 # Build rule for target.
-simple_server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 simple_server
-.PHONY : simple_server
+http_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 http_server
+.PHONY : http_server
 
 # fast build rule for target.
-simple_server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/build
-.PHONY : simple_server/fast
+http_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/build
+.PHONY : http_server/fast
+
+#=============================================================================
+# Target rules for targets named SimpleAmqpClient
+
+# Build rule for target.
+SimpleAmqpClient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SimpleAmqpClient
+.PHONY : SimpleAmqpClient
+
+# fast build rule for target.
+SimpleAmqpClient/fast:
+	$(MAKE) $(MAKESILENT) -f third_party/SimpleAmqpClient-build/CMakeFiles/SimpleAmqpClient.dir/build.make third_party/SimpleAmqpClient-build/CMakeFiles/SimpleAmqpClient.dir/build
+.PHONY : SimpleAmqpClient/fast
+
+AIApps/ChatServer/src/AIUtil/AIConfig.o: AIApps/ChatServer/src/AIUtil/AIConfig.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AIConfig.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIConfig.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AIConfig.i: AIApps/ChatServer/src/AIUtil/AIConfig.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AIConfig.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIConfig.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AIConfig.s: AIApps/ChatServer/src/AIUtil/AIConfig.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AIConfig.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIConfig.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIConfig.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AIFactory.o: AIApps/ChatServer/src/AIUtil/AIFactory.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AIFactory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIFactory.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AIFactory.i: AIApps/ChatServer/src/AIUtil/AIFactory.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AIFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIFactory.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AIFactory.s: AIApps/ChatServer/src/AIUtil/AIFactory.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AIFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIFactory.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIFactory.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AIHelper.o: AIApps/ChatServer/src/AIUtil/AIHelper.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AIHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIHelper.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AIHelper.i: AIApps/ChatServer/src/AIUtil/AIHelper.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AIHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIHelper.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AIHelper.s: AIApps/ChatServer/src/AIUtil/AIHelper.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AIHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIHelper.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIHelper.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.o: AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.i: AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.s: AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.o: AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.i: AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.s: AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AISpeechProcessor.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AIStrategy.o: AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AIStrategy.i: AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AIStrategy.s: AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIStrategy.cpp.s
+
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.o: AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.o
+
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.i: AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.i
+
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.s: AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/AIToolRegistry.cpp.s
+
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.o: AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.o
+
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.i: AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.i
+
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.s: AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/ImageRecognizer.cpp.s
+
+AIApps/ChatServer/src/AIUtil/MQManager.o: AIApps/ChatServer/src/AIUtil/MQManager.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/MQManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/MQManager.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.cpp.o
+
+AIApps/ChatServer/src/AIUtil/MQManager.i: AIApps/ChatServer/src/AIUtil/MQManager.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/MQManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/MQManager.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.cpp.i
+
+AIApps/ChatServer/src/AIUtil/MQManager.s: AIApps/ChatServer/src/AIUtil/MQManager.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/MQManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/MQManager.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/MQManager.cpp.s
+
+AIApps/ChatServer/src/AIUtil/base64.o: AIApps/ChatServer/src/AIUtil/base64.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.o
+
+# target to build an object file
+AIApps/ChatServer/src/AIUtil/base64.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/base64.cpp.o
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.cpp.o
+
+AIApps/ChatServer/src/AIUtil/base64.i: AIApps/ChatServer/src/AIUtil/base64.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/AIUtil/base64.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/base64.cpp.i
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.cpp.i
+
+AIApps/ChatServer/src/AIUtil/base64.s: AIApps/ChatServer/src/AIUtil/base64.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/AIUtil/base64.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/AIUtil/base64.cpp.s
+.PHONY : AIApps/ChatServer/src/AIUtil/base64.cpp.s
+
+AIApps/ChatServer/src/ChatServer.o: AIApps/ChatServer/src/ChatServer.cpp.o
+.PHONY : AIApps/ChatServer/src/ChatServer.o
+
+# target to build an object file
+AIApps/ChatServer/src/ChatServer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/ChatServer.cpp.o
+.PHONY : AIApps/ChatServer/src/ChatServer.cpp.o
+
+AIApps/ChatServer/src/ChatServer.i: AIApps/ChatServer/src/ChatServer.cpp.i
+.PHONY : AIApps/ChatServer/src/ChatServer.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/ChatServer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/ChatServer.cpp.i
+.PHONY : AIApps/ChatServer/src/ChatServer.cpp.i
+
+AIApps/ChatServer/src/ChatServer.s: AIApps/ChatServer/src/ChatServer.cpp.s
+.PHONY : AIApps/ChatServer/src/ChatServer.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/ChatServer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/ChatServer.cpp.s
+.PHONY : AIApps/ChatServer/src/ChatServer.cpp.s
+
+AIApps/ChatServer/src/handlers/AIMenuHandler.o: AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/AIMenuHandler.i: AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/AIMenuHandler.s: AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIMenuHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/AIUploadHandler.o: AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/AIUploadHandler.i: AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/AIUploadHandler.s: AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.o: AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.i: AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.s: AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/AIUploadSendHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.o: AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.i: AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.s: AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatEntryHandler.o: AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatEntryHandler.i: AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatEntryHandler.s: AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatEntryHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatHandler.o: AIApps/ChatServer/src/handlers/ChatHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatHandler.i: AIApps/ChatServer/src/handlers/ChatHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatHandler.s: AIApps/ChatServer/src/handlers/ChatHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.o: AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.i: AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.s: AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatHistoryHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatLoginHandler.o: AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatLoginHandler.i: AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatLoginHandler.s: AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatLoginHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.o: AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.i: AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.s: AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatLogoutHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.o: AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.i: AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.s: AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatRegisterHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatSendHandler.o: AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatSendHandler.i: AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatSendHandler.s: AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSendHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.o: AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.i: AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.s: AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSessionsHandler.cpp.s
+
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.o: AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.o
+
+# target to build an object file
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.o
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.o
+
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.i: AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.i
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.i
+
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.s: AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.s
+.PHONY : AIApps/ChatServer/src/handlers/ChatSpeechHandler.cpp.s
+
+AIApps/ChatServer/src/main.o: AIApps/ChatServer/src/main.cpp.o
+.PHONY : AIApps/ChatServer/src/main.o
+
+# target to build an object file
+AIApps/ChatServer/src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/main.cpp.o
+.PHONY : AIApps/ChatServer/src/main.cpp.o
+
+AIApps/ChatServer/src/main.i: AIApps/ChatServer/src/main.cpp.i
+.PHONY : AIApps/ChatServer/src/main.i
+
+# target to preprocess a source file
+AIApps/ChatServer/src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/main.cpp.i
+.PHONY : AIApps/ChatServer/src/main.cpp.i
+
+AIApps/ChatServer/src/main.s: AIApps/ChatServer/src/main.cpp.s
+.PHONY : AIApps/ChatServer/src/main.s
+
+# target to generate assembly for a file
+AIApps/ChatServer/src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/AIApps/ChatServer/src/main.cpp.s
+.PHONY : AIApps/ChatServer/src/main.cpp.s
 
 HttpServer/src/http/HttpContext.o: HttpServer/src/http/HttpContext.cpp.o
 .PHONY : HttpServer/src/http/HttpContext.o
 
 # target to build an object file
 HttpServer/src/http/HttpContext.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpContext.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpContext.cpp.o
 .PHONY : HttpServer/src/http/HttpContext.cpp.o
 
 HttpServer/src/http/HttpContext.i: HttpServer/src/http/HttpContext.cpp.i
@@ -142,7 +800,7 @@ HttpServer/src/http/HttpContext.i: HttpServer/src/http/HttpContext.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/http/HttpContext.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpContext.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpContext.cpp.i
 .PHONY : HttpServer/src/http/HttpContext.cpp.i
 
 HttpServer/src/http/HttpContext.s: HttpServer/src/http/HttpContext.cpp.s
@@ -150,7 +808,7 @@ HttpServer/src/http/HttpContext.s: HttpServer/src/http/HttpContext.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/http/HttpContext.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpContext.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpContext.cpp.s
 .PHONY : HttpServer/src/http/HttpContext.cpp.s
 
 HttpServer/src/http/HttpRequest.o: HttpServer/src/http/HttpRequest.cpp.o
@@ -158,7 +816,7 @@ HttpServer/src/http/HttpRequest.o: HttpServer/src/http/HttpRequest.cpp.o
 
 # target to build an object file
 HttpServer/src/http/HttpRequest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpRequest.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpRequest.cpp.o
 .PHONY : HttpServer/src/http/HttpRequest.cpp.o
 
 HttpServer/src/http/HttpRequest.i: HttpServer/src/http/HttpRequest.cpp.i
@@ -166,7 +824,7 @@ HttpServer/src/http/HttpRequest.i: HttpServer/src/http/HttpRequest.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/http/HttpRequest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpRequest.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpRequest.cpp.i
 .PHONY : HttpServer/src/http/HttpRequest.cpp.i
 
 HttpServer/src/http/HttpRequest.s: HttpServer/src/http/HttpRequest.cpp.s
@@ -174,7 +832,7 @@ HttpServer/src/http/HttpRequest.s: HttpServer/src/http/HttpRequest.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/http/HttpRequest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpRequest.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpRequest.cpp.s
 .PHONY : HttpServer/src/http/HttpRequest.cpp.s
 
 HttpServer/src/http/HttpResponse.o: HttpServer/src/http/HttpResponse.cpp.o
@@ -182,7 +840,7 @@ HttpServer/src/http/HttpResponse.o: HttpServer/src/http/HttpResponse.cpp.o
 
 # target to build an object file
 HttpServer/src/http/HttpResponse.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpResponse.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpResponse.cpp.o
 .PHONY : HttpServer/src/http/HttpResponse.cpp.o
 
 HttpServer/src/http/HttpResponse.i: HttpServer/src/http/HttpResponse.cpp.i
@@ -190,7 +848,7 @@ HttpServer/src/http/HttpResponse.i: HttpServer/src/http/HttpResponse.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/http/HttpResponse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpResponse.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpResponse.cpp.i
 .PHONY : HttpServer/src/http/HttpResponse.cpp.i
 
 HttpServer/src/http/HttpResponse.s: HttpServer/src/http/HttpResponse.cpp.s
@@ -198,7 +856,7 @@ HttpServer/src/http/HttpResponse.s: HttpServer/src/http/HttpResponse.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/http/HttpResponse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpResponse.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpResponse.cpp.s
 .PHONY : HttpServer/src/http/HttpResponse.cpp.s
 
 HttpServer/src/http/HttpServer.o: HttpServer/src/http/HttpServer.cpp.o
@@ -206,7 +864,7 @@ HttpServer/src/http/HttpServer.o: HttpServer/src/http/HttpServer.cpp.o
 
 # target to build an object file
 HttpServer/src/http/HttpServer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpServer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpServer.cpp.o
 .PHONY : HttpServer/src/http/HttpServer.cpp.o
 
 HttpServer/src/http/HttpServer.i: HttpServer/src/http/HttpServer.cpp.i
@@ -214,7 +872,7 @@ HttpServer/src/http/HttpServer.i: HttpServer/src/http/HttpServer.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/http/HttpServer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpServer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpServer.cpp.i
 .PHONY : HttpServer/src/http/HttpServer.cpp.i
 
 HttpServer/src/http/HttpServer.s: HttpServer/src/http/HttpServer.cpp.s
@@ -222,7 +880,7 @@ HttpServer/src/http/HttpServer.s: HttpServer/src/http/HttpServer.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/http/HttpServer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/http/HttpServer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/http/HttpServer.cpp.s
 .PHONY : HttpServer/src/http/HttpServer.cpp.s
 
 HttpServer/src/middleware/MiddlewareChain.o: HttpServer/src/middleware/MiddlewareChain.cpp.o
@@ -230,7 +888,7 @@ HttpServer/src/middleware/MiddlewareChain.o: HttpServer/src/middleware/Middlewar
 
 # target to build an object file
 HttpServer/src/middleware/MiddlewareChain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.o
 .PHONY : HttpServer/src/middleware/MiddlewareChain.cpp.o
 
 HttpServer/src/middleware/MiddlewareChain.i: HttpServer/src/middleware/MiddlewareChain.cpp.i
@@ -238,7 +896,7 @@ HttpServer/src/middleware/MiddlewareChain.i: HttpServer/src/middleware/Middlewar
 
 # target to preprocess a source file
 HttpServer/src/middleware/MiddlewareChain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.i
 .PHONY : HttpServer/src/middleware/MiddlewareChain.cpp.i
 
 HttpServer/src/middleware/MiddlewareChain.s: HttpServer/src/middleware/MiddlewareChain.cpp.s
@@ -246,7 +904,7 @@ HttpServer/src/middleware/MiddlewareChain.s: HttpServer/src/middleware/Middlewar
 
 # target to generate assembly for a file
 HttpServer/src/middleware/MiddlewareChain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/MiddlewareChain.cpp.s
 .PHONY : HttpServer/src/middleware/MiddlewareChain.cpp.s
 
 HttpServer/src/middleware/cors/CorsMiddleware.o: HttpServer/src/middleware/cors/CorsMiddleware.cpp.o
@@ -254,7 +912,7 @@ HttpServer/src/middleware/cors/CorsMiddleware.o: HttpServer/src/middleware/cors/
 
 # target to build an object file
 HttpServer/src/middleware/cors/CorsMiddleware.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.o
 .PHONY : HttpServer/src/middleware/cors/CorsMiddleware.cpp.o
 
 HttpServer/src/middleware/cors/CorsMiddleware.i: HttpServer/src/middleware/cors/CorsMiddleware.cpp.i
@@ -262,7 +920,7 @@ HttpServer/src/middleware/cors/CorsMiddleware.i: HttpServer/src/middleware/cors/
 
 # target to preprocess a source file
 HttpServer/src/middleware/cors/CorsMiddleware.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.i
 .PHONY : HttpServer/src/middleware/cors/CorsMiddleware.cpp.i
 
 HttpServer/src/middleware/cors/CorsMiddleware.s: HttpServer/src/middleware/cors/CorsMiddleware.cpp.s
@@ -270,7 +928,7 @@ HttpServer/src/middleware/cors/CorsMiddleware.s: HttpServer/src/middleware/cors/
 
 # target to generate assembly for a file
 HttpServer/src/middleware/cors/CorsMiddleware.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/middleware/cors/CorsMiddleware.cpp.s
 .PHONY : HttpServer/src/middleware/cors/CorsMiddleware.cpp.s
 
 HttpServer/src/router/Router.o: HttpServer/src/router/Router.cpp.o
@@ -278,7 +936,7 @@ HttpServer/src/router/Router.o: HttpServer/src/router/Router.cpp.o
 
 # target to build an object file
 HttpServer/src/router/Router.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/router/Router.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/router/Router.cpp.o
 .PHONY : HttpServer/src/router/Router.cpp.o
 
 HttpServer/src/router/Router.i: HttpServer/src/router/Router.cpp.i
@@ -286,7 +944,7 @@ HttpServer/src/router/Router.i: HttpServer/src/router/Router.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/router/Router.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/router/Router.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/router/Router.cpp.i
 .PHONY : HttpServer/src/router/Router.cpp.i
 
 HttpServer/src/router/Router.s: HttpServer/src/router/Router.cpp.s
@@ -294,7 +952,7 @@ HttpServer/src/router/Router.s: HttpServer/src/router/Router.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/router/Router.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/router/Router.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/router/Router.cpp.s
 .PHONY : HttpServer/src/router/Router.cpp.s
 
 HttpServer/src/session/Session.o: HttpServer/src/session/Session.cpp.o
@@ -302,7 +960,7 @@ HttpServer/src/session/Session.o: HttpServer/src/session/Session.cpp.o
 
 # target to build an object file
 HttpServer/src/session/Session.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/Session.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/Session.cpp.o
 .PHONY : HttpServer/src/session/Session.cpp.o
 
 HttpServer/src/session/Session.i: HttpServer/src/session/Session.cpp.i
@@ -310,7 +968,7 @@ HttpServer/src/session/Session.i: HttpServer/src/session/Session.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/session/Session.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/Session.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/Session.cpp.i
 .PHONY : HttpServer/src/session/Session.cpp.i
 
 HttpServer/src/session/Session.s: HttpServer/src/session/Session.cpp.s
@@ -318,7 +976,7 @@ HttpServer/src/session/Session.s: HttpServer/src/session/Session.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/session/Session.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/Session.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/Session.cpp.s
 .PHONY : HttpServer/src/session/Session.cpp.s
 
 HttpServer/src/session/SessionManager.o: HttpServer/src/session/SessionManager.cpp.o
@@ -326,7 +984,7 @@ HttpServer/src/session/SessionManager.o: HttpServer/src/session/SessionManager.c
 
 # target to build an object file
 HttpServer/src/session/SessionManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionManager.cpp.o
 .PHONY : HttpServer/src/session/SessionManager.cpp.o
 
 HttpServer/src/session/SessionManager.i: HttpServer/src/session/SessionManager.cpp.i
@@ -334,7 +992,7 @@ HttpServer/src/session/SessionManager.i: HttpServer/src/session/SessionManager.c
 
 # target to preprocess a source file
 HttpServer/src/session/SessionManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionManager.cpp.i
 .PHONY : HttpServer/src/session/SessionManager.cpp.i
 
 HttpServer/src/session/SessionManager.s: HttpServer/src/session/SessionManager.cpp.s
@@ -342,7 +1000,7 @@ HttpServer/src/session/SessionManager.s: HttpServer/src/session/SessionManager.c
 
 # target to generate assembly for a file
 HttpServer/src/session/SessionManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionManager.cpp.s
 .PHONY : HttpServer/src/session/SessionManager.cpp.s
 
 HttpServer/src/session/SessionStorage.o: HttpServer/src/session/SessionStorage.cpp.o
@@ -350,7 +1008,7 @@ HttpServer/src/session/SessionStorage.o: HttpServer/src/session/SessionStorage.c
 
 # target to build an object file
 HttpServer/src/session/SessionStorage.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionStorage.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionStorage.cpp.o
 .PHONY : HttpServer/src/session/SessionStorage.cpp.o
 
 HttpServer/src/session/SessionStorage.i: HttpServer/src/session/SessionStorage.cpp.i
@@ -358,7 +1016,7 @@ HttpServer/src/session/SessionStorage.i: HttpServer/src/session/SessionStorage.c
 
 # target to preprocess a source file
 HttpServer/src/session/SessionStorage.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionStorage.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionStorage.cpp.i
 .PHONY : HttpServer/src/session/SessionStorage.cpp.i
 
 HttpServer/src/session/SessionStorage.s: HttpServer/src/session/SessionStorage.cpp.s
@@ -366,7 +1024,7 @@ HttpServer/src/session/SessionStorage.s: HttpServer/src/session/SessionStorage.c
 
 # target to generate assembly for a file
 HttpServer/src/session/SessionStorage.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/session/SessionStorage.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/session/SessionStorage.cpp.s
 .PHONY : HttpServer/src/session/SessionStorage.cpp.s
 
 HttpServer/src/ssl/SslConfig.o: HttpServer/src/ssl/SslConfig.cpp.o
@@ -374,7 +1032,7 @@ HttpServer/src/ssl/SslConfig.o: HttpServer/src/ssl/SslConfig.cpp.o
 
 # target to build an object file
 HttpServer/src/ssl/SslConfig.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConfig.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConfig.cpp.o
 .PHONY : HttpServer/src/ssl/SslConfig.cpp.o
 
 HttpServer/src/ssl/SslConfig.i: HttpServer/src/ssl/SslConfig.cpp.i
@@ -382,7 +1040,7 @@ HttpServer/src/ssl/SslConfig.i: HttpServer/src/ssl/SslConfig.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/ssl/SslConfig.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConfig.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConfig.cpp.i
 .PHONY : HttpServer/src/ssl/SslConfig.cpp.i
 
 HttpServer/src/ssl/SslConfig.s: HttpServer/src/ssl/SslConfig.cpp.s
@@ -390,7 +1048,7 @@ HttpServer/src/ssl/SslConfig.s: HttpServer/src/ssl/SslConfig.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/ssl/SslConfig.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConfig.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConfig.cpp.s
 .PHONY : HttpServer/src/ssl/SslConfig.cpp.s
 
 HttpServer/src/ssl/SslConnection.o: HttpServer/src/ssl/SslConnection.cpp.o
@@ -398,7 +1056,7 @@ HttpServer/src/ssl/SslConnection.o: HttpServer/src/ssl/SslConnection.cpp.o
 
 # target to build an object file
 HttpServer/src/ssl/SslConnection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConnection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConnection.cpp.o
 .PHONY : HttpServer/src/ssl/SslConnection.cpp.o
 
 HttpServer/src/ssl/SslConnection.i: HttpServer/src/ssl/SslConnection.cpp.i
@@ -406,7 +1064,7 @@ HttpServer/src/ssl/SslConnection.i: HttpServer/src/ssl/SslConnection.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/ssl/SslConnection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConnection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConnection.cpp.i
 .PHONY : HttpServer/src/ssl/SslConnection.cpp.i
 
 HttpServer/src/ssl/SslConnection.s: HttpServer/src/ssl/SslConnection.cpp.s
@@ -414,7 +1072,7 @@ HttpServer/src/ssl/SslConnection.s: HttpServer/src/ssl/SslConnection.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/ssl/SslConnection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslConnection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslConnection.cpp.s
 .PHONY : HttpServer/src/ssl/SslConnection.cpp.s
 
 HttpServer/src/ssl/SslContext.o: HttpServer/src/ssl/SslContext.cpp.o
@@ -422,7 +1080,7 @@ HttpServer/src/ssl/SslContext.o: HttpServer/src/ssl/SslContext.cpp.o
 
 # target to build an object file
 HttpServer/src/ssl/SslContext.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslContext.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslContext.cpp.o
 .PHONY : HttpServer/src/ssl/SslContext.cpp.o
 
 HttpServer/src/ssl/SslContext.i: HttpServer/src/ssl/SslContext.cpp.i
@@ -430,7 +1088,7 @@ HttpServer/src/ssl/SslContext.i: HttpServer/src/ssl/SslContext.cpp.i
 
 # target to preprocess a source file
 HttpServer/src/ssl/SslContext.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslContext.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslContext.cpp.i
 .PHONY : HttpServer/src/ssl/SslContext.cpp.i
 
 HttpServer/src/ssl/SslContext.s: HttpServer/src/ssl/SslContext.cpp.s
@@ -438,7 +1096,7 @@ HttpServer/src/ssl/SslContext.s: HttpServer/src/ssl/SslContext.cpp.s
 
 # target to generate assembly for a file
 HttpServer/src/ssl/SslContext.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/ssl/SslContext.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/ssl/SslContext.cpp.s
 .PHONY : HttpServer/src/ssl/SslContext.cpp.s
 
 HttpServer/src/utils/db/DbConnection.o: HttpServer/src/utils/db/DbConnection.cpp.o
@@ -446,7 +1104,7 @@ HttpServer/src/utils/db/DbConnection.o: HttpServer/src/utils/db/DbConnection.cpp
 
 # target to build an object file
 HttpServer/src/utils/db/DbConnection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnection.cpp.o
 .PHONY : HttpServer/src/utils/db/DbConnection.cpp.o
 
 HttpServer/src/utils/db/DbConnection.i: HttpServer/src/utils/db/DbConnection.cpp.i
@@ -454,7 +1112,7 @@ HttpServer/src/utils/db/DbConnection.i: HttpServer/src/utils/db/DbConnection.cpp
 
 # target to preprocess a source file
 HttpServer/src/utils/db/DbConnection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnection.cpp.i
 .PHONY : HttpServer/src/utils/db/DbConnection.cpp.i
 
 HttpServer/src/utils/db/DbConnection.s: HttpServer/src/utils/db/DbConnection.cpp.s
@@ -462,7 +1120,7 @@ HttpServer/src/utils/db/DbConnection.s: HttpServer/src/utils/db/DbConnection.cpp
 
 # target to generate assembly for a file
 HttpServer/src/utils/db/DbConnection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnection.cpp.s
 .PHONY : HttpServer/src/utils/db/DbConnection.cpp.s
 
 HttpServer/src/utils/db/DbConnectionPool.o: HttpServer/src/utils/db/DbConnectionPool.cpp.o
@@ -470,7 +1128,7 @@ HttpServer/src/utils/db/DbConnectionPool.o: HttpServer/src/utils/db/DbConnection
 
 # target to build an object file
 HttpServer/src/utils/db/DbConnectionPool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.o
 .PHONY : HttpServer/src/utils/db/DbConnectionPool.cpp.o
 
 HttpServer/src/utils/db/DbConnectionPool.i: HttpServer/src/utils/db/DbConnectionPool.cpp.i
@@ -478,7 +1136,7 @@ HttpServer/src/utils/db/DbConnectionPool.i: HttpServer/src/utils/db/DbConnection
 
 # target to preprocess a source file
 HttpServer/src/utils/db/DbConnectionPool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.i
 .PHONY : HttpServer/src/utils/db/DbConnectionPool.cpp.i
 
 HttpServer/src/utils/db/DbConnectionPool.s: HttpServer/src/utils/db/DbConnectionPool.cpp.s
@@ -486,272 +1144,8 @@ HttpServer/src/utils/db/DbConnectionPool.s: HttpServer/src/utils/db/DbConnection
 
 # target to generate assembly for a file
 HttpServer/src/utils/db/DbConnectionPool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_server.dir/build.make CMakeFiles/http_server.dir/HttpServer/src/utils/db/DbConnectionPool.cpp.s
 .PHONY : HttpServer/src/utils/db/DbConnectionPool.cpp.s
-
-WebApps/GomokuServer/src/AiGame.o: WebApps/GomokuServer/src/AiGame.cpp.o
-.PHONY : WebApps/GomokuServer/src/AiGame.o
-
-# target to build an object file
-WebApps/GomokuServer/src/AiGame.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/AiGame.cpp.o
-.PHONY : WebApps/GomokuServer/src/AiGame.cpp.o
-
-WebApps/GomokuServer/src/AiGame.i: WebApps/GomokuServer/src/AiGame.cpp.i
-.PHONY : WebApps/GomokuServer/src/AiGame.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/AiGame.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/AiGame.cpp.i
-.PHONY : WebApps/GomokuServer/src/AiGame.cpp.i
-
-WebApps/GomokuServer/src/AiGame.s: WebApps/GomokuServer/src/AiGame.cpp.s
-.PHONY : WebApps/GomokuServer/src/AiGame.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/AiGame.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/AiGame.cpp.s
-.PHONY : WebApps/GomokuServer/src/AiGame.cpp.s
-
-WebApps/GomokuServer/src/GomokuServer.o: WebApps/GomokuServer/src/GomokuServer.cpp.o
-.PHONY : WebApps/GomokuServer/src/GomokuServer.o
-
-# target to build an object file
-WebApps/GomokuServer/src/GomokuServer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/GomokuServer.cpp.o
-.PHONY : WebApps/GomokuServer/src/GomokuServer.cpp.o
-
-WebApps/GomokuServer/src/GomokuServer.i: WebApps/GomokuServer/src/GomokuServer.cpp.i
-.PHONY : WebApps/GomokuServer/src/GomokuServer.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/GomokuServer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/GomokuServer.cpp.i
-.PHONY : WebApps/GomokuServer/src/GomokuServer.cpp.i
-
-WebApps/GomokuServer/src/GomokuServer.s: WebApps/GomokuServer/src/GomokuServer.cpp.s
-.PHONY : WebApps/GomokuServer/src/GomokuServer.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/GomokuServer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/GomokuServer.cpp.s
-.PHONY : WebApps/GomokuServer/src/GomokuServer.cpp.s
-
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.o: WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.i: WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.s: WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameMoveHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.o: WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.i: WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.s: WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/AiGameStartHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/EntryHandler.o: WebApps/GomokuServer/src/handlers/EntryHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/EntryHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/EntryHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/EntryHandler.i: WebApps/GomokuServer/src/handlers/EntryHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/EntryHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/EntryHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/EntryHandler.s: WebApps/GomokuServer/src/handlers/EntryHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/EntryHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/EntryHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/EntryHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/GameBackendHandler.o: WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/GameBackendHandler.i: WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/GameBackendHandler.s: WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/GameBackendHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/LoginHandler.o: WebApps/GomokuServer/src/handlers/LoginHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/LoginHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/LoginHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/LoginHandler.i: WebApps/GomokuServer/src/handlers/LoginHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/LoginHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/LoginHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/LoginHandler.s: WebApps/GomokuServer/src/handlers/LoginHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/LoginHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/LoginHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/LoginHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/Loginout.o: WebApps/GomokuServer/src/handlers/Loginout.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/Loginout.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/Loginout.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.cpp.o
-
-WebApps/GomokuServer/src/handlers/Loginout.i: WebApps/GomokuServer/src/handlers/Loginout.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/Loginout.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/Loginout.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.cpp.i
-
-WebApps/GomokuServer/src/handlers/Loginout.s: WebApps/GomokuServer/src/handlers/Loginout.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/Loginout.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/Loginout.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/Loginout.cpp.s
-
-WebApps/GomokuServer/src/handlers/MenuHandler.o: WebApps/GomokuServer/src/handlers/MenuHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/MenuHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/MenuHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/MenuHandler.i: WebApps/GomokuServer/src/handlers/MenuHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/MenuHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/MenuHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/MenuHandler.s: WebApps/GomokuServer/src/handlers/MenuHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/MenuHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/MenuHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/MenuHandler.cpp.s
-
-WebApps/GomokuServer/src/handlers/RegisterHandler.o: WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.o
-
-# target to build an object file
-WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.o
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.o
-
-WebApps/GomokuServer/src/handlers/RegisterHandler.i: WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.i
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.i
-
-WebApps/GomokuServer/src/handlers/RegisterHandler.s: WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.s
-.PHONY : WebApps/GomokuServer/src/handlers/RegisterHandler.cpp.s
-
-WebApps/GomokuServer/src/main.o: WebApps/GomokuServer/src/main.cpp.o
-.PHONY : WebApps/GomokuServer/src/main.o
-
-# target to build an object file
-WebApps/GomokuServer/src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/main.cpp.o
-.PHONY : WebApps/GomokuServer/src/main.cpp.o
-
-WebApps/GomokuServer/src/main.i: WebApps/GomokuServer/src/main.cpp.i
-.PHONY : WebApps/GomokuServer/src/main.i
-
-# target to preprocess a source file
-WebApps/GomokuServer/src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/main.cpp.i
-.PHONY : WebApps/GomokuServer/src/main.cpp.i
-
-WebApps/GomokuServer/src/main.s: WebApps/GomokuServer/src/main.cpp.s
-.PHONY : WebApps/GomokuServer/src/main.s
-
-# target to generate assembly for a file
-WebApps/GomokuServer/src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_server.dir/build.make CMakeFiles/simple_server.dir/WebApps/GomokuServer/src/main.cpp.s
-.PHONY : WebApps/GomokuServer/src/main.cpp.s
 
 # Help Target
 help:
@@ -760,8 +1154,88 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... simple_server"
+	@echo "... SimpleAmqpClient"
+	@echo "... http_server"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIConfig.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIConfig.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIConfig.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIFactory.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIFactory.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIFactory.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIHelper.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIHelper.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIHelper.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISessionIdGenerator.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISpeechProcessor.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISpeechProcessor.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AISpeechProcessor.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIStrategy.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIStrategy.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIStrategy.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIToolRegistry.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIToolRegistry.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/AIToolRegistry.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/ImageRecognizer.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/ImageRecognizer.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/ImageRecognizer.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/MQManager.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/MQManager.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/MQManager.s"
+	@echo "... AIApps/ChatServer/src/AIUtil/base64.o"
+	@echo "... AIApps/ChatServer/src/AIUtil/base64.i"
+	@echo "... AIApps/ChatServer/src/AIUtil/base64.s"
+	@echo "... AIApps/ChatServer/src/ChatServer.o"
+	@echo "... AIApps/ChatServer/src/ChatServer.i"
+	@echo "... AIApps/ChatServer/src/ChatServer.s"
+	@echo "... AIApps/ChatServer/src/handlers/AIMenuHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/AIMenuHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/AIMenuHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadSendHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadSendHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/AIUploadSendHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatCreateAndSendHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatEntryHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatEntryHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatEntryHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHistoryHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHistoryHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatHistoryHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLoginHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLoginHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLoginHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLogoutHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLogoutHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatLogoutHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatRegisterHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatRegisterHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatRegisterHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSendHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSendHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSendHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSessionsHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSessionsHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSessionsHandler.s"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSpeechHandler.o"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSpeechHandler.i"
+	@echo "... AIApps/ChatServer/src/handlers/ChatSpeechHandler.s"
+	@echo "... AIApps/ChatServer/src/main.o"
+	@echo "... AIApps/ChatServer/src/main.i"
+	@echo "... AIApps/ChatServer/src/main.s"
 	@echo "... HttpServer/src/http/HttpContext.o"
 	@echo "... HttpServer/src/http/HttpContext.i"
 	@echo "... HttpServer/src/http/HttpContext.s"
@@ -807,39 +1281,6 @@ help:
 	@echo "... HttpServer/src/utils/db/DbConnectionPool.o"
 	@echo "... HttpServer/src/utils/db/DbConnectionPool.i"
 	@echo "... HttpServer/src/utils/db/DbConnectionPool.s"
-	@echo "... WebApps/GomokuServer/src/AiGame.o"
-	@echo "... WebApps/GomokuServer/src/AiGame.i"
-	@echo "... WebApps/GomokuServer/src/AiGame.s"
-	@echo "... WebApps/GomokuServer/src/GomokuServer.o"
-	@echo "... WebApps/GomokuServer/src/GomokuServer.i"
-	@echo "... WebApps/GomokuServer/src/GomokuServer.s"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameMoveHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameMoveHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameMoveHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameStartHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameStartHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/AiGameStartHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/EntryHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/EntryHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/EntryHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/GameBackendHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/GameBackendHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/GameBackendHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/LoginHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/LoginHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/LoginHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/Loginout.o"
-	@echo "... WebApps/GomokuServer/src/handlers/Loginout.i"
-	@echo "... WebApps/GomokuServer/src/handlers/Loginout.s"
-	@echo "... WebApps/GomokuServer/src/handlers/MenuHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/MenuHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/MenuHandler.s"
-	@echo "... WebApps/GomokuServer/src/handlers/RegisterHandler.o"
-	@echo "... WebApps/GomokuServer/src/handlers/RegisterHandler.i"
-	@echo "... WebApps/GomokuServer/src/handlers/RegisterHandler.s"
-	@echo "... WebApps/GomokuServer/src/main.o"
-	@echo "... WebApps/GomokuServer/src/main.i"
-	@echo "... WebApps/GomokuServer/src/main.s"
 .PHONY : help
 
 
